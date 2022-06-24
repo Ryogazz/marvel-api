@@ -21,7 +21,7 @@ interface ResponseData {
   };
 }
 
-const Characters: React.FC = () => {
+export default function Characters() {
   const [characters, setCharacters] = useState<ResponseData[]>([]);
 
   useEffect(() => {
@@ -52,6 +52,4 @@ const Characters: React.FC = () => {
       </CardList>
     </Container>
   );
-};
-
-export default Characters;
+}
