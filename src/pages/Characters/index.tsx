@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../Services/api';
 
-import { Container } from './styles';
+import {
+  Container,
+  CardList,
+  Card,
+  CardHeader,
+  Strong,
+  Image,
+  ImageContainer,
+} from '../styles/Characters.styled';
 
 interface ResponseData {
   id: string;
@@ -25,21 +33,23 @@ const Characters: React.FC = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  console.log(characters);
+
   return (
     <Container>
-      <h1>Characters</h1>
-      <ul>
+      <CardList>
         {characters.map((character) => (
-          <li key={character.id}>
-            <img
-              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              alt={character.name}
-            />
-            <strong>{character.name}</strong>
-            <p>{character.description}</p>
-          </li>
+          <Card key={character.id}>
+            <ImageContainer>
+              <Image
+                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              />
+            </ImageContainer>
+            <Strong>{character.name}</Strong>
+            <CardHeader>{character.description}</CardHeader>
+          </Card>
         ))}
-      </ul>
+      </CardList>
     </Container>
   );
 };
